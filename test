@@ -1,0 +1,20 @@
+Soal 1
+API Data Member : https://interview.klaklik.com/data-member
+Header : APPTOKEN , interview token
+
+Tampil data
+Range
+1 - 20
+21 - 40
+41 - 60
+
+Soal 2
+Api = https://interview.klaklik.com/list-content ( METHOD POST )
+Body => limit = 10 offsett = 0
+Yang ditampilkan :
+
+- judul, gambar dan genre
+
+Soal 3
+APi = https://interview.klaklik.com/transaksi-user ( GET )
+Hitung berapa yang harus dibayar

@@ -5,14 +5,17 @@ import CardGenres from "../components/CardGenres";
 
 const Genres = () => {
   const [genre, setGenre] = useState([]);
+  const [limit, setLimit] = useState(10);
+  const [offset, setOffset] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchData = async () => {
     try {
       const response = await axios.post(
         "/list-content",
         {
-          limit: 10,
-          offset: 0,
+          limit: limit,
+          offset: offset,
         },
         {
           headers: {
@@ -21,22 +24,33 @@ const Genres = () => {
         }
       );
       console.log(response.data.DATA);
-      setGenre(response.data.DATA);
+      setGenre(genre.concat(response.data.DATA));
+      setOffset(offset + limit);
+      setIsLoading(false);
     } catch (error) {
       console.error(error);
     }
   };
 
   useEffect(() => {
+    setIsLoading(true);
     fetchData();
   }, []);
 
+  const handleLoadMore = () => {
+    fetchData();
+  };
+
   return (
     <>
+      <h1 className="genres_title">List Content</h1>
       <div className="genres">
-        <CardGenres genres={genre} />
+        <CardGenres isLoading={isLoading} genres={genre} />
       </div>
       <div className="g_foot">
+        <button className="button" onClick={handleLoadMore}>
+          Load More
+        </button>
         <Link to="/" className="button">
           Kembali
         </Link>

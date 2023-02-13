@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import CardMember from "../components/CardMember";
 
 const Member = () => {
+  // code infinitescroll
   const [items, setItems] = useState([]);
   const [visibleItems, setVisibleItems] = useState(20); //set berapa data yang ingin ditampilkan
 
